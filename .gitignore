@@ -1,4 +1,7 @@
 node_modules/
+game/img/
+game/public/
+
 
 # Editor directories and files
 .idea
