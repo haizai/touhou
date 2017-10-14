@@ -1,6 +1,6 @@
 import LnAnime from '../LnGame/LnAnime'
 
-export default class PlayAnime {
+export default class PlayerAnime {
 	constructor(
 		lnImage,
 		stayImgs,
@@ -32,7 +32,6 @@ export default class PlayAnime {
 		this.iteration = 'infinite'
 		this.nextFun = null
 
-		console.log(this)
 	}
 
 

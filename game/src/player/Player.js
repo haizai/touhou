@@ -1,15 +1,18 @@
 import LnImage from '../LnGame/LnImage'
 import LnAnime from '../LnGame/LnAnime'
 
-import PlayAnime from './PlayAnime'
+import PlayerAnime from './PlayerAnime'
 
-export default class Play extends LnImage{
 
-  constructor(game) {
-    super(game, 'pl00_01')
+export default class Player extends LnImage{
+
+  constructor(game, player) {
+    super(game, player + '_01')
     this.x = 200
     this.y = 500
     this.speed = 6
+    this.player = player
+
 
     this.l = false
     this.r = false
@@ -18,21 +21,14 @@ export default class Play extends LnImage{
     this.lf = null
     this.tb = null
 
-
-
-    this.moveStage = 'stay' // stayToLeft left leftToStay stayToRight right rightTostage
-
-    this.anime = new PlayAnime(
+    this.anime = new PlayerAnime(
       this,
-      ['pl00_01','pl00_02','pl00_03','pl00_04','pl00_05','pl00_06','pl00_07','pl00_08'],
-      ['pl00_09','pl00_10','pl00_11','pl00_12'],
-      ['pl00_13','pl00_14','pl00_15','pl00_16'],
-      ['pl00_17','pl00_18','pl00_19','pl00_20'],
-      ['pl00_21','pl00_22','pl00_23','pl00_24'],
+      [player + '_01',player + '_02',player + '_03',player + '_04',player + '_05',player + '_06',player + '_07',player + '_08'],
+      [player + '_09',player + '_10',player + '_11',player + '_12'],
+      [player + '_13',player + '_14',player + '_15',player + '_16'],
+      [player + '_17',player + '_18',player + '_19',player + '_20'],
+      [player + '_21',player + '_22',player + '_23',player + '_24'],
     )
-
-    // this.anime = new LnAnime(game, this, ['pl00_01','pl00_02','pl00_03','pl00_04','pl00_05','pl00_06','pl00_07','pl00_08'])
-
   }
 
   move(direction) {
@@ -58,18 +54,8 @@ export default class Play extends LnImage{
     this.y < this.game.config.height - this.h/2 - this.speed ? this.y += this.speed : this.y = this.game.config.height - this.h/2
   }
   stay(){
-    // this.changeImageByName('pl00_01')
     this.anime.stay()
   }
-
-  stayLeft() {
-    this.anime.stay()
-  }
-  stayRight() {
-    this.anime.stay()
-  }
-
-
   onDirection(direction) {
     switch (direction) {
       case 'l':
@@ -121,7 +107,7 @@ export default class Play extends LnImage{
       } else if (this.r)  {
         this.move('r')
       } else {
-        this.anime.stay()
+        this.stay()
       }
     }
     if (this.tb) {
@@ -135,27 +121,4 @@ export default class Play extends LnImage{
     }
   }
 
-
-  startMoveLeft(){
-    // this.anime.startLeft()
-    // if (this.moveStage !== 'moveLeft' && this.moveStage !== 'left') {      
-    //   this.moveStage = 'moveLeft'
-    //   this.anime = new LnAnime(this.game, this, ['pl00_09','pl00_10','pl00_11','pl00_12'],5,1, ()=> {
-    //     this.moveStage = 'left'
-    //     this.anime = new LnAnime(this.game, this, ['pl00_13','pl00_14','pl00_15','pl00_16'])
-    //   })
-    // }
-    console.log('start left')
-    // this.anime = new LnAnime(this.game, this, ['pl00_09','pl00_10','pl00_11','pl00_12'],2,1)
-  }
-  startMoveRight(){
-    // this.anime.startRight()
-    console.log('start right')
-  }
-  startMoveTop(){
-
-  }
-  startMoveBottom(){
-
-  }
 }

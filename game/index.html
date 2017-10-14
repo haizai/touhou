@@ -6,6 +6,27 @@
 </head>
 <body>
 	<canvas id="id-canvas" width="400" height="600"></canvas>
+
+	<form>
+		<input type="radio" name="player" value="pl00" id="pl00" checked >博丽灵梦
+		<input type="radio" name="player" value="pl01" id="pl01">雾雨魔理沙
+		<br>
+		移动速度
+		<span id="speedSpan">6</span>
+		<input id="speedRange" type="range" max="10" min="2" step="1" value="6">
+		<br>
+		停止,向左,向右 间隔帧
+		<span id="infinieFrameSpan">3</span>
+		<input id="infinieFrameRange" type="range" max="10" min="1" step="1" value="3">
+		<br>
+		移动过程 间隔帧
+		<span id="quickFrameSpan">1</span>
+		<input id="quickFrameRange" type="range" max="10" min="1" step="1" value="1">
+	</form>
+
+
 	<script src="public/game.js"></script>
+
+
 </body>
 </html>
