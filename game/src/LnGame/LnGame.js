@@ -39,10 +39,7 @@ export default class LnGame {
     this.i = this.i || new this(...args)
     return this.i
   }
-  drawImage(img) {
-    let texture = this.textures[img.name]
-    this.context.drawImage(texture, img.x-img.w/2, img.y-img.h/2)
-  }
+
   registerAction(keyCode, cb, startCb ,endCb) {
     if (cb) this.actions[keyCode] = cb
 

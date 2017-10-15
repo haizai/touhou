@@ -1,7 +1,7 @@
 import Pl00 from '../player/Pl00'
 import Pl01 from '../player/Pl01'
 
-
+import ConstantPoint from '../bullet/ConstantPoint'
 
 export default class Scene {
 
@@ -12,9 +12,14 @@ export default class Scene {
 
     this.eles = []
 
+
     this.player = new Pl00(this.game)
     this.addEle(this.player)
     this.registerPlayerAction()
+
+
+    let bp = new ConstantPoint(200,350,3,0.2)
+    this.addEle(bp)
 
 
 	}
@@ -35,8 +40,11 @@ export default class Scene {
   }
   drawEles(){
     this.eles.forEach(ele=>{
-      this.game.drawImage(ele)
+      ele.draw(this.game)
     }, )
+  }
+  drawPlayerPoint(){
+    this.player.drawPoint()
   }
 
   modPlayer(name) {
@@ -69,10 +77,15 @@ export default class Scene {
     this.game.context.fillStyle = "#554"
     this.game.context.fillRect(0, 0, this.game.config.width, this.game.config.height)
 
-    // draw
+
+    // draw eles
     
     this.drawEles() 
-    
+
+    this.drawPlayerPoint()
+
+
+
     // game.drawImage(paddle)
     // this.game.drawImage(this.ball)
     // draw blocks
@@ -96,7 +109,21 @@ export default class Scene {
         if (ele.update) {
           ele.update()
         }
+        if (ele.destroy && ele.destroy(this.game)) {
+          console.log('destroy',ele.y)
+          this.removeEle(ele)
+          ele = null
+        }
+
+        if (ele.collide && ele.collide(this.player)) {
+          console.log('collide')
+        }
+
       }, )
+
+
+
+
       // ball.move()
       // // 判断游戏结束
       // if (ball.y > paddle.y) {

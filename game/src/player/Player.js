@@ -13,6 +13,8 @@ export default class Player extends LnImage{
     this.speed = 6
     this.player = player
 
+    this.pointRadius = 3
+
 
     this.l = false
     this.r = false
@@ -121,4 +123,17 @@ export default class Player extends LnImage{
     }
   }
 
+  drawPoint(){
+    let ctx = this.game.context
+      
+    ctx.beginPath()
+    ctx.fillStyle = '#fff'
+    ctx.arc(this.x, this.y,this.pointRadius,0,Math.PI * 2)
+    ctx.fill()
+
+    ctx.beginPath()
+    ctx.strokeStyle = 'red'
+    ctx.arc(this.x, this.y,this.pointRadius+1,0,Math.PI * 2)
+    ctx.stroke()
+  }
 }
