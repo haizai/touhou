@@ -1,11 +1,12 @@
 export default class LnGame {
-	constructor(fps, config ,images, runCallback){
+	constructor(fps,images, runCallback){
     window.fps = fps
-    this.config = config
     this.images = images
 
     this.textures = {}
     this.runCallback = runCallback
+
+    this.deadCount = 0
 
     this.scene = null
     this.actions = {}
@@ -91,6 +92,12 @@ export default class LnGame {
 	draw(){
 		this.scene.draw()
 	}
+
+  dead(){
+    this.deadCount++
+    $('deadCount').innerHTML = this.deadCount
+    MOD.paused = true
+  }
 
 
   init(){

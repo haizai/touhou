@@ -1,8 +1,6 @@
 let enableDebugMode = (game, enable) => {
 	if(!enable) return
-
-  let $ = id => document.getElementById(id)
-
+  
   $('pl00').addEventListener('click', (e)=>{
     e.target.blur()
     game.scene.modPlayer('pl00')
@@ -29,12 +27,52 @@ let enableDebugMode = (game, enable) => {
     $('quickFrameSpan').innerHTML = e.target.value
     game.scene.modQuickFrame(+e.target.value)
   })
+
+  $('appendRateRange').addEventListener('input', e => {
+    e.target.blur()
+    $('appendRateSpan').innerHTML = e.target.value
+    MOD.appendRate = +e.target.value
+  })
+  $('bulletRadiusRange').addEventListener('input', e => {
+    e.target.blur()
+    $('bulletRadiusSpan').innerHTML = e.target.value
+    MOD.bulletRadius = +e.target.value
+  })
+  $('bulletSpeedRange').addEventListener('input', e => {
+    e.target.blur()
+    $('bulletSpeedSpan').innerHTML = e.target.value
+    MOD.bulletSpeed = +e.target.value
+  })
+
+
+  window.addEventListener('keydown', e => {
+    if (e.keyCode === 27) {
+      MOD.paused = true
+    } else if (e.keyCode === 13) {
+      MOD.paused = false
+    } else if (e.keyCode === 88) {
+      game.scene.clear()
+    }
+
+  })
+
+  $('esc').addEventListener('click', e => {
+    e.preventDefault()
+    MOD.paused = true
+  })
+  $('enter').addEventListener('click', e => {
+    e.preventDefault()
+    MOD.paused = false
+  })
+  $('clear').addEventListener('click', e => {
+    e.preventDefault()
+    game.scene.clear()
+  })
 }
 
 
 import LnGame from './LnGame/LnGame'
 import Scene from './scene/scene'
-import config from './config'
 
 
 var images = {
@@ -88,7 +126,7 @@ var images = {
   pl01_23: 'img/pl01/pl01_23.png',
   pl01_24: 'img/pl01/pl01_24.png', 
 }
-var game = LnGame.instance(30, config, images, function(g){
+var game = LnGame.instance(30, images, function(g){
 	let s = new Scene(g)
   g.runWithScene(s)
 })

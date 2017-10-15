@@ -9,6 +9,9 @@ export default class BulletPoint {
 
 		this.type = 'BulletPoint'
 
+		this.destroy = false
+		this.collide = false
+
 
 	}
 
@@ -27,7 +30,26 @@ export default class BulletPoint {
 
 	}
 
-	update(){
+	update(game){
+		this.move()
+		this.computeLeave()
+		this.computeCollide(game.scene.player)
+	}
 
+	computeLeave() {
+		// this.destroy = this.y > CONFIG.height + this.radius
+	}
+	computeCollide(player){
+		let dx = player.x - this.x
+		let dy = player.y - this.y
+
+		let dr = Math.sqrt(dx*dx + dy*dy)
+
+		let r = player.pointRadius + this.radius
+
+		this.collide = dr < r
+	}
+	move(){
+		
 	}
 }

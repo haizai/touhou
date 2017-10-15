@@ -2,6 +2,7 @@ import Pl00 from '../player/Pl00'
 import Pl01 from '../player/Pl01'
 
 import ConstantPoint from '../bullet/ConstantPoint'
+import LinearPoint from '../bullet/LinearPoint'
 
 export default class Scene {
 
@@ -12,13 +13,15 @@ export default class Scene {
 
     this.eles = []
 
+    this.appendRate = 0
+
 
     this.player = new Pl00(this.game)
     this.addEle(this.player)
     this.registerPlayerAction()
 
 
-    let bp = new ConstantPoint(200,350,3,0.2)
+    let bp = new LinearPoint(200,10,3,6,30)
     this.addEle(bp)
 
 
@@ -37,6 +40,7 @@ export default class Scene {
   }
   removeEle(img) {
     this.eles.splice(this.eles.indexOf(img),1)
+    img = null
   }
   drawEles(){
     this.eles.forEach(ele=>{
@@ -72,10 +76,19 @@ export default class Scene {
     this.player.anime.quickFrame = quickFrame
   }
 
+
+  clear(){
+    this.eles.forEach(ele=>{
+      if (!ele.stay) {
+        ele.destroy = true
+      }
+    })
+  }
+
 	draw(){
     // draw 背景
     this.game.context.fillStyle = "#554"
-    this.game.context.fillRect(0, 0, this.game.config.width, this.game.config.height)
+    this.game.context.fillRect(0, 0, CONFIG.width, CONFIG.height)
 
 
     // draw eles
@@ -99,25 +112,33 @@ export default class Scene {
     // game.context.fillText('分数: ' + score, 10, 290)
 	}
   update() {
-      if (window.paused) {
+      if (MOD.paused) {
         return
       }
+
+
+      this.randomShot()
+
+
+
       this.eles.forEach(ele=>{
         if (ele.anime) {
           ele.anime.update()
         }
         if (ele.update) {
-          ele.update()
+          ele.update(this.game)
         }
-        if (ele.destroy && ele.destroy(this.game)) {
-          console.log('destroy',ele.y)
-          this.removeEle(ele)
-          ele = null
+        
+        if (ele.collide) {
+          console.log('collide',ele.x,ele.y)
+          this.game.dead()
+          ele.destroy = true 
         }
 
-        if (ele.collide && ele.collide(this.player)) {
-          console.log('collide')
+        if (ele.destroy) {
+          this.removeEle(ele)
         }
+
 
       }, )
 
@@ -147,5 +168,23 @@ export default class Scene {
       //         score += 100
       //     }
       // }
+  }
+
+  randomShot(){
+    this.appendRate += MOD.appendRate
+
+    while (this.appendRate > 60) {
+      this.addBP()
+      this.appendRate-=60
+    }
+  }
+  addBP(){
+    let bp = new LinearPoint(
+      Utils.randomInt(0,CONFIG.width),
+      0,
+      MOD.bulletRadius,
+      MOD.bulletSpeed,
+      Utils.randomInt(30,150))
+    this.addEle(bp)
   }
 }

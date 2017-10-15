@@ -8,10 +8,24 @@
 	<canvas id="id-canvas" width="400" height="600"></canvas>
 
 	<form>
+		死亡次数 <span id="deadCount">0</span>
+		<button id="esc">暂停ESC</button>
+		<button id="enter">继续Enter</button>
+		<button id="clear">清屏X</button>
+		死后请点继续
+		<br>
+		
+		弹幕出现频率<input id="appendRateRange" type="range" max="100" min="0" step="1" value="40"> 
+		<span id="appendRateSpan">40</span>（个/秒） <br>
+		弹幕速度<input id="bulletSpeedRange" type="range" max="5" min="0.2" step="0.2" value="2"> 
+		<span id="bulletSpeedSpan">2</span> <br>
+		弹幕半径<input id="bulletRadiusRange" type="range" max="10" min="1" step="1" value="3"> 
+		<span id="bulletRadiusSpan">3</span><br>
+
 		<input type="radio" name="player" value="pl00" id="pl00" checked >博丽灵梦
 		<input type="radio" name="player" value="pl01" id="pl01">雾雨魔理沙
 		<br>
-		移动速度
+		自机移动速度
 		<span id="speedSpan">6</span>
 		<input id="speedRange" type="range" max="10" min="2" step="1" value="6">
 		<br>
@@ -25,6 +39,7 @@
 	</form>
 
 
+	<script src="public/utils.js"></script>
 	<script src="public/game.js"></script>
 
 

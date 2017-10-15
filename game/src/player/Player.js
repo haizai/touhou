@@ -47,13 +47,13 @@ export default class Player extends LnImage{
   }
   moveRight(){
     this.anime.moveRight()
-    this.x < this.game.config.width - this.w/2 - this.speed ? this.x += this.speed : this.x = this.game.config.width - this.w/2
+    this.x < CONFIG.width - this.w/2 - this.speed ? this.x += this.speed : this.x = CONFIG.width - this.w/2
   }
   moveTop(){
     this.y > this.speed + this.h/2 ? this.y -= this.speed : this.y = this.h/2 
   }
   moveBottom(){
-    this.y < this.game.config.height - this.h/2 - this.speed ? this.y += this.speed : this.y = this.game.config.height - this.h/2
+    this.y < CONFIG.height - this.h/2 - this.speed ? this.y += this.speed : this.y = CONFIG.height - this.h/2
   }
   stay(){
     this.anime.stay()
@@ -132,7 +132,7 @@ export default class Player extends LnImage{
     ctx.fill()
 
     ctx.beginPath()
-    ctx.strokeStyle = 'red'
+    ctx.strokeStyle = 'blue'
     ctx.arc(this.x, this.y,this.pointRadius+1,0,Math.PI * 2)
     ctx.stroke()
   }
