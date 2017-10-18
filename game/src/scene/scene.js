@@ -1,7 +1,7 @@
 import Pl00 from '../player/Pl00'
 import Pl01 from '../player/Pl01'
 
-import LinearPoint from '../bullet/LinearPoint'
+import LinearBP from '../bullet/LinearBP'
 import Cute from '../enemy/Cute'
 import flow from './flow'
 
@@ -136,8 +136,8 @@ export default class Scene {
         
         if (ele.collide) {
           console.log('collide',ele.x,ele.y)
-          // this.game.dead()
-          // ele.destroy = true 
+          this.game.dead()
+          ele.destroy = true 
         }
 
         if (ele.destroy) {

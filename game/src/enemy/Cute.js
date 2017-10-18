@@ -1,5 +1,6 @@
 import LnImage from '../LnGame/LnImage'
 import EnemyAnime from './EnemyAnime'
+import LinearBP from '../bullet/LinearBP'
 
 
 export default class Cute extends LnImage{
@@ -45,15 +46,18 @@ export default class Cute extends LnImage{
     if (o.x) this.x = o.x;
     if (o.y) this.y = o.y;
 
+    this.shot()
   }
-
   path(t) {
 
-    return {
-      x: 50 + 0.5 * t,
-      y: t
+  }
+  shot() {
+    if (Utils.probability(0.02)) {
+      let bp = new LinearBP(this.x, this.y+16)
+      this.game.scene.addEle(bp)
     }
   }
+
 
   computeLeave(){
     if (

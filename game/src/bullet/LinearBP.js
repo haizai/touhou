@@ -1,8 +1,8 @@
 import BulletPoint from './BulletPoint'
 
 
-export default class LinearPoint extends BulletPoint {
-	constructor(x,y,radius = 3, speed = 1, angle = 90){
+export default class LinearBP extends BulletPoint {
+	constructor(x,y,radius = 3, speed = 2, angle = 90){
 
 		super(x,y,radius)
 

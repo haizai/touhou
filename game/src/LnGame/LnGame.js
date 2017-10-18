@@ -118,7 +118,6 @@ export default class LnGame {
         g.textures[name] = img
         // 所有图片都成功载入之后, 调用 run
         loads++
-        console.log('load images', loads, names.length)
         if (loads == names.length) {
           console.log('load images', g.images)
           g.__start()
