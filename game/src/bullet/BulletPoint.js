@@ -37,7 +37,14 @@ export default class BulletPoint {
 	}
 
 	computeLeave() {
-		// this.destroy = this.y > CONFIG.height + this.radius
+		if (
+		this.y < - this.radius || 
+		this.x < - this.radius ||
+		this.y > CONFIG.height + this.radius ||
+		this.x > CONFIG.width + this.radius 
+		) {
+			this.destroy = true
+		}
 	}
 	computeCollide(player){
 		let dx = player.x - this.x

@@ -1,11 +1,11 @@
 import LnImage from '../LnGame/LnImage'
 import EnemyAnime from './EnemyAnime'
-import LinearBP from '../bullet/LinearBP'
+import PlayerLinearBP from '../bullet/PlayerLinearBP'
 
 
 export default class Cute extends LnImage{
-  constructor(game) {
-    super(game, 'cute_1_01')
+  constructor(game,type = '1') {
+    super(game, `cute_${type}_01`)
     this.x = 0
     this.y = 0
 
@@ -20,9 +20,9 @@ export default class Cute extends LnImage{
 
     this.anime = new EnemyAnime(
     	this,
-    	['cute_1_01','cute_1_02','cute_1_03','cute_1_04','cute_1_05'],
-    	['cute_1_06','cute_1_07','cute_1_08'],
-    	['cute_1_09','cute_1_10','cute_1_11','cute_1_12'],
+    	[`cute_${type}_01`,`cute_${type}_02`,`cute_${type}_03`,`cute_${type}_04`,`cute_${type}_05`],
+    	[`cute_${type}_06`,`cute_${type}_07`,`cute_${type}_08`],
+    	[`cute_${type}_09`,`cute_${type}_10`,`cute_${type}_11`,`cute_${type}_12`],
     )
   }
 
@@ -34,26 +34,26 @@ export default class Cute extends LnImage{
   }
 
   update(game){
-    this.move()
+    this.move(game.scene.player)
     this.computeLeave()
     this.computeCollide(game.scene.player)
   }
 
-  move(){
+  move(player){
     this.t++
     let o = this.path.call(this,this.t)
 
     if (o.x) this.x = o.x;
     if (o.y) this.y = o.y;
 
-    this.shot()
+    this.shot(player)
   }
   path(t) {
 
   }
-  shot() {
+  shot(player) {
     if (Utils.probability(0.02)) {
-      let bp = new LinearBP(this.x, this.y+16)
+      let bp = new PlayerLinearBP(this.x, this.y+16,player.x,player.y)
       this.game.scene.addEle(bp)
     }
   }
