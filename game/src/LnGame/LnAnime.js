@@ -1,50 +1,66 @@
- export default class LnAnime {
- 	constructor(game, lnImage, names,frameCount = 5, iteration = 'infinite',cb = null) {
+export default class LnAnime {
+ 	constructor(lnImage, stayImgs) {
  		this.lnImage = lnImage
- 		this.game = game
- 		this.changeNames(names)
- 		this.frameIndex = 0
+ 		this.stayImgs = stayImgs
 
- 		this.frameCount = frameCount
- 		this.nowCount = frameCount
 
- 		this.iteration = iteration
+		this.infinieFrame = 3
+		this.quickFrame = 1
+		this.frameCount = this.infinieFrame
+		this.nowCount = this.quickFrame
+		this.frameIndex = 0
 
- 		this.cb = cb
+
+		this.frames = this.stayImgs
+		this.iteration = 'infinite'
+		this.nextFun = null
+
 
  	}
 
- 	update() {
- 		this.nowCount--
- 		if (this.nowCount == 0 && this.iteration !== 0) {
+	update(){
 
-	 			this.nowCount = this.frameCount
-	 			this.frameIndex = ( this.frameIndex + 1 ) % this.frames.length
+		if (this.nextFun) {
+			this.nextFun()
+			this.nextFun = null
+		}
 
-	 			this.lnImage.image = this.frames[this.frameIndex]
+		this.nowCount--
+		if (this.nowCount === 0) {
+			this.nowCount = this.frameCount
+			this.doAnime()
+		}
+	}
 
-	 			if (this.frameIndex == this.frames.length - 1) {
-	 				switch (this.iteration) {
-	 					case 'infinite':
-	 						break;
-	 					case 1:
-	 						this.iteration = 0
-	 						if (this.cb) {
-	 							this.cb()
-	 						}
-	 						break;
-	 					default:
-	 						this.iteration--
-	 						break;
-	 				}
-	 			}
+	doAnime() {
+		this.frameIndex++
+		if (this.iteration !== 0) {
+			if (this.frameIndex < this.frames.length) {
+				this.lnImage.name = this.frames[this.frameIndex]
+			} else {
+				switch (this.iteration) {
+					default:
+						this.iteration--
+					case 'infinite':
+						this.frameIndex = 0
+						this.lnImage.name = this.frames[this.frameIndex]
+						break;
+					case 1:
+						this.end()
+						break
+				}
+			}
+		}
+	}
 
- 		}
- 	}
- 	changeNames(names) {
- 		this.frameCount = 5
- 		this.frames = names.map(name=>{
- 			return this.game.images[name]
- 		})
- 	}
- }
+	end(){
+
+	}
+
+	configAnime(frames,iteration = 'infinite', frameCount = this.infinieFrame) {
+		this.frames = frames
+		this.iteration = iteration
+		this.frameCount = frameCount
+		this.frameIndex = -1
+	}
+}

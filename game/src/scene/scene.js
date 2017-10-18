@@ -1,8 +1,11 @@
 import Pl00 from '../player/Pl00'
 import Pl01 from '../player/Pl01'
 
-import ConstantPoint from '../bullet/ConstantPoint'
 import LinearPoint from '../bullet/LinearPoint'
+import Cute from '../enemy/Cute'
+
+
+
 
 export default class Scene {
 
@@ -21,8 +24,9 @@ export default class Scene {
     this.registerPlayerAction()
 
 
-    let bp = new LinearPoint(200,10,3,6,30)
-    this.addEle(bp)
+    this.cute = new Cute(this.game)
+    this.addEle(this.cute)
+
 
 
 	}
@@ -44,7 +48,7 @@ export default class Scene {
   }
   drawEles(){
     this.eles.forEach(ele=>{
-      ele.draw(this.game)
+      ele.isReverse ? ele.drawReverse() : ele.draw(this.game)
     }, )
   }
   drawPlayerPoint(){
@@ -117,7 +121,7 @@ export default class Scene {
       }
 
 
-      this.randomShot()
+      // this.randomShot()
 
 
 

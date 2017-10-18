@@ -13,7 +13,7 @@ export default class Player extends LnImage{
     this.speed = 6
     this.player = player
 
-    this.pointRadius = 3
+    this.pointRadius = 2
 
 
     this.l = false
