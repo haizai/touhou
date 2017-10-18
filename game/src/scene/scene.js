@@ -3,6 +3,7 @@ import Pl01 from '../player/Pl01'
 
 import LinearPoint from '../bullet/LinearPoint'
 import Cute from '../enemy/Cute'
+import flow from './flow'
 
 
 
@@ -22,12 +23,6 @@ export default class Scene {
     this.player = new Pl00(this.game)
     this.addEle(this.player)
     this.registerPlayerAction()
-
-
-    this.cute = new Cute(this.game)
-    this.addEle(this.cute)
-
-
 
 	}
 
@@ -115,14 +110,20 @@ export default class Scene {
     // draw labels
     // game.context.fillText('分数: ' + score, 10, 290)
 	}
+
+  doFlow(flow,t){
+    let n = t.toString()
+    if (flow[n]) {
+      flow[n](this.game)
+    }
+  }
+
   update() {
       if (MOD.paused) {
         return
       }
 
-
-      // this.randomShot()
-
+      this.doFlow(flow,this.game.t)
 
 
       this.eles.forEach(ele=>{
@@ -135,8 +136,8 @@ export default class Scene {
         
         if (ele.collide) {
           console.log('collide',ele.x,ele.y)
-          this.game.dead()
-          ele.destroy = true 
+          // this.game.dead()
+          // ele.destroy = true 
         }
 
         if (ele.destroy) {

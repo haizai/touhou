@@ -10,7 +10,7 @@ export default class Player extends LnImage{
     super(game, player + '_01')
     this.x = 200
     this.y = 500
-    this.speed = 6
+    this.speed = 4
     this.player = player
 
     this.pointRadius = 2

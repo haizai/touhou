@@ -8,6 +8,8 @@ export default class LnGame {
 
     this.deadCount = 0
 
+    this.t = 0
+
     this.scene = null
     this.actions = {}
     this.endActions = {}
@@ -87,6 +89,7 @@ export default class LnGame {
     }, 1000/window.fps)
 	}
 	update(){
+    this.t++
 		this.scene.update()
 	}
 	draw(){

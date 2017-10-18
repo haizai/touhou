@@ -4,7 +4,7 @@ export default class LnAnime {
  		this.stayImgs = stayImgs
 
 
-		this.infinieFrame = 3
+		this.infinieFrame = 6
 		this.quickFrame = 1
 		this.frameCount = this.infinieFrame
 		this.nowCount = this.quickFrame
