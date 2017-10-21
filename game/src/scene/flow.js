@@ -1,7 +1,7 @@
 import Cute from '../enemy/Cute'
 
 function cuteLtoR(game) {
-  let cute = new Cute(game)
+  let cute = new Cute(game,0)
   cute.anime.move()
   cute.path = t => {
   	if (t < 200) {
@@ -17,7 +17,7 @@ function cuteLtoR(game) {
   game.scene.addEle(cute)
 }
 function cuteRtoL(game) {
-  let cute = new Cute(game,'2')
+  let cute = new Cute(game,1)
   cute.toLeft()
   cute.anime.move()
   cute.path = t => {   	

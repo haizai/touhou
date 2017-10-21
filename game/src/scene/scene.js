@@ -1,6 +1,8 @@
 import Pl00 from '../player/Pl00'
 import Pl01 from '../player/Pl01'
 
+import LnSprite from '../LnGame/LnSprite'
+
 import LinearBP from '../bullet/LinearBP'
 import Cute from '../enemy/Cute'
 import flow from './flow'
@@ -88,6 +90,7 @@ export default class Scene {
     // draw 背景
     this.game.context.fillStyle = "#554"
     this.game.context.fillRect(0, 0, CONFIG.width, CONFIG.height)
+
 
 
     // draw eles

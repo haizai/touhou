@@ -21,6 +21,11 @@ export default class PlayerAnime extends LnAnime {
 
 	}
 
+	changeImg(frameIndex){
+		let name = this.frames[frameIndex]
+		this.lnImage.toggleSprite(name)
+	}
+
 	moveLeft() {
 		if (this.stage !== 'stayToLeft' && this.stage !== 'left') {
 			this.stage = 'stayToLeft'

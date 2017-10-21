@@ -1,11 +1,32 @@
 import LnImage from '../LnGame/LnImage'
+import LnSprite from '../LnGame/LnSprite'
 import EnemyAnime from './EnemyAnime'
 import PlayerLinearBP from '../bullet/PlayerLinearBP'
 
 
-export default class Cute extends LnImage{
-  constructor(game,type = '1') {
-    super(game, `cute_${type}_01`)
+export default class Cute extends LnSprite{
+  constructor(game,type = 0) {
+
+
+    var configs = [
+      
+      {name: '01',x:0 * 32 ,y:type * 32 + 320 },
+      {name: '02',x:1 * 32 ,y:type * 32 + 320 },
+      {name: '03',x:2 * 32 ,y:type * 32 + 320 },
+      {name: '04',x:3 * 32 ,y:type * 32 + 320 },
+      {name: '05',x:4 * 32 ,y:type * 32 + 320 },
+      {name: '06',x:5 * 32 ,y:type * 32 + 320 },
+      {name: '07',x:6 * 32 ,y:type * 32 + 320 },
+      {name: '08',x:7 * 32 ,y:type * 32 + 320 },
+      {name: '09',x:8 * 32 ,y:type * 32 + 320 },
+      {name: '10',x:9 * 32 ,y:type * 32 + 320 },
+      {name: '11',x:10 * 32 ,y:type * 32 + 320 },
+      {name: '12',x:11 * 32 ,y:type * 32 + 320 },
+
+    ]
+
+    super(game, 'enemy', 32, 32, configs)
+
     this.x = 0
     this.y = 0
 
@@ -20,9 +41,9 @@ export default class Cute extends LnImage{
 
     this.anime = new EnemyAnime(
     	this,
-    	[`cute_${type}_01`,`cute_${type}_02`,`cute_${type}_03`,`cute_${type}_04`,`cute_${type}_05`],
-    	[`cute_${type}_06`,`cute_${type}_07`,`cute_${type}_08`],
-    	[`cute_${type}_09`,`cute_${type}_10`,`cute_${type}_11`,`cute_${type}_12`],
+    	[`01`,`02`,`03`,`04`,`05`],
+    	[`06`,`07`,`08`],
+    	[`09`,`10`,`11`,`12`],
     )
   }
 

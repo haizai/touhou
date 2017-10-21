@@ -18,9 +18,6 @@ export default class LnImage {
 	draw() {
     let texture = this.game.textures[this.name]
     this.game.context.drawImage(texture, this.x-this.w/2, this.y-this.h/2)
-
-
-
 	}
 
 	// 翻转渲染

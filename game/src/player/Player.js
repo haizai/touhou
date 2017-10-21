@@ -1,17 +1,52 @@
 import LnImage from '../LnGame/LnImage'
+import LnSprite from '../LnGame/LnSprite'
+
 import LnAnime from '../LnGame/LnAnime'
 
 import PlayerAnime from './PlayerAnime'
 
 
-export default class Player extends LnImage{
+export default class Player extends LnSprite{
 
-  constructor(game, player) {
-    super(game, player + '_01')
+  constructor(game, name) {
+
+
+    var configs = [
+      
+      {name: '01',x:0 * 32 ,y:0 * 48 },
+      {name: '02',x:1 * 32 ,y:0 * 48 },
+      {name: '03',x:2 * 32 ,y:0 * 48 },
+      {name: '04',x:3 * 32 ,y:0 * 48 },
+      {name: '05',x:4 * 32 ,y:0 * 48 },
+      {name: '06',x:5 * 32 ,y:0 * 48 },
+      {name: '07',x:6 * 32 ,y:0 * 48 },
+      {name: '08',x:7 * 32 ,y:0 * 48 },
+
+      {name: '09',x:0 * 32 ,y:1 * 48 },
+      {name: '10',x:1 * 32 ,y:1 * 48 },
+      {name: '11',x:2 * 32 ,y:1 * 48 },
+      {name: '12',x:3 * 32 ,y:1 * 48 },
+      {name: '13',x:4 * 32 ,y:1 * 48 },
+      {name: '14',x:5 * 32 ,y:1 * 48 },
+      {name: '15',x:6 * 32 ,y:1 * 48 },
+      {name: '16',x:7 * 32 ,y:1 * 48 },
+
+      {name: '17',x:0 * 32 ,y:2 * 48 },
+      {name: '18',x:1 * 32 ,y:2 * 48 },
+      {name: '19',x:2 * 32 ,y:2 * 48 },
+      {name: '20',x:3 * 32 ,y:2 * 48 },
+      {name: '21',x:4 * 32 ,y:2 * 48 },
+      {name: '22',x:5 * 32 ,y:2 * 48 },
+      {name: '23',x:6 * 32 ,y:2 * 48 },
+      {name: '24',x:7 * 32 ,y:2 * 48 },
+
+    ]
+
+    super(game, name, 32, 48, configs)
     this.x = 200
     this.y = 500
     this.speed = 4
-    this.player = player
+    this.player = 'player'
 
     this.pointRadius = 2
 
@@ -25,11 +60,11 @@ export default class Player extends LnImage{
 
     this.anime = new PlayerAnime(
       this,
-      [player + '_01',player + '_02',player + '_03',player + '_04',player + '_05',player + '_06',player + '_07',player + '_08'],
-      [player + '_09',player + '_10',player + '_11',player + '_12'],
-      [player + '_13',player + '_14',player + '_15',player + '_16'],
-      [player + '_17',player + '_18',player + '_19',player + '_20'],
-      [player + '_21',player + '_22',player + '_23',player + '_24'],
+      ['01','02','03','04','05','06','07','08'],
+      ['09','10','11','12'],
+      ['13','14','15','16'],
+      ['17','18','19','20'],
+      ['21','22','23','24'],
     )
   }
 
