@@ -27,8 +27,13 @@ export default class Cute extends LnSprite{
 
     super(game, 'enemy', 32, 32, configs)
 
+
+    this.type = 'enemy'
+
     this.x = 0
     this.y = 0
+
+    this.hp = 50
 
     this.collide = false // 体术
     this.pointRadius = 2 // 体术碰撞半径
@@ -101,5 +106,12 @@ export default class Cute extends LnSprite{
     let r = player.pointRadius + this.pointRadius
 
     this.collide = dr < r
+  }
+
+  beShot(val) {
+    this.hp -= val
+    if (this.hp <= 0) {
+      this.destroy = true
+    }
   }
 }

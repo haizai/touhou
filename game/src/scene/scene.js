@@ -1,6 +1,8 @@
 import Pl00 from '../player/Pl00'
 import Pl01 from '../player/Pl01'
 
+import Pl00Bullet from '../player/Pl00Bullet'
+
 import LnSprite from '../LnGame/LnSprite'
 
 import LinearBP from '../bullet/LinearBP'
@@ -25,6 +27,9 @@ export default class Scene {
     this.player = new Pl00(this.game)
     this.addEle(this.player)
     this.registerPlayerAction()
+
+    this.addEle(new Pl00Bullet(this.game))
+
 
 	}
 

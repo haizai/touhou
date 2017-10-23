@@ -34,6 +34,18 @@ function cuteRtoL(game) {
   game.scene.addEle(cute)
 }
 
+function test(game) {
+  let cute = new Cute(game,1)
+  cute.toLeft()
+  cute.anime.move()
+  cute.path = t => {    
+    return {
+      x:150,y:100,
+    }
+  }
+  game.scene.addEle(cute)
+}
+
 export default {
 	20(game) {cuteLtoR(game)},
 	40(game) {cuteRtoL(game)},
@@ -50,4 +62,7 @@ export default {
 	260(game) {cuteLtoR(game)},
 	280(game) {cuteRtoL(game)},
 	300(game) {cuteLtoR(game)},
+  // 10(game) {
+  //   test(game)
+  // } 
 }

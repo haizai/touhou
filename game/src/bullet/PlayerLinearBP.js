@@ -11,8 +11,6 @@ export default class PlayerLinearBP extends BulletPoint {
 		this.ty = (py-y)/r*speed
 		this.tx = (px-x)/r*speed
 
-
-		console.log(this)
 	}
 	move(){
 		this.y += this.ty
