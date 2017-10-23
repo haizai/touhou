@@ -157,12 +157,8 @@ export default class Player extends LnSprite{
       }
     }
 
-    this.updateShot()
   }
-  
-  updateShot(){
-    
-  }
+
   drawPoint(){
     let ctx = this.game.context
       

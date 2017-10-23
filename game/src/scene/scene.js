@@ -38,6 +38,7 @@ export default class Scene {
     this.game.registerAction('39',()=>this.player.onDirection('r'),null,()=>this.player.offDirection('r')) //'→'
     this.game.registerAction('38',()=>this.player.onDirection('t'),null,()=>this.player.offDirection('t')) //'↑'
     this.game.registerAction('40',()=>this.player.onDirection('b'),null,()=>this.player.offDirection('b')) //'↓'
+    this.game.registerAction('90',()=>this.player.tryShot()) //'z'
   }
 
 

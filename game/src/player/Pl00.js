@@ -8,13 +8,13 @@ export default class Pl00 extends Player {
 
 		this.shotFrameCount = 16
 
-		this.shotCount = this.shotFrameCount
+		this.shotCount = 1
 	}
 
 
-	updateShot(){
+	tryShot(){
 		this.shotCount--
-		if (this.shotCount == 0) {
+		if (this.shotCount <= 0) {
 			this.shot()
 			this.shotCount = this.shotFrameCount
 		}
