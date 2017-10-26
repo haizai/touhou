@@ -52,6 +52,10 @@ export default class Scene {
   drawEles(){
     this.eles.forEach(ele=>{
       ele.isReverse ? ele.drawReverse() : ele.draw(this.game)
+
+      if (ele.drawHPRound) {
+        ele.drawHPRound()
+      }
     }, )
   }
   drawPlayerPoint(){
@@ -86,7 +90,7 @@ export default class Scene {
 
   clear(){
     this.eles.forEach(ele=>{
-      if (!ele.stay) {
+      if (ele.type === 'bullet') {
         ele.destroy = true
       }
     })

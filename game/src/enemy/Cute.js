@@ -1,12 +1,11 @@
-import LnImage from '../LnGame/LnImage'
-import LnSprite from '../LnGame/LnSprite'
+
 import EnemyAnime from './EnemyAnime'
 import PlayerLinearBP from '../bullet/PlayerLinearBP'
 
+import Enemy from './Enemy'
 
-export default class Cute extends LnSprite{
-  constructor(game,type = 0, startComputerLeave = 120) {
-
+export default class Cute extends Enemy{
+  constructor(game,type = 0) {
 
     var configs = [
       
@@ -25,25 +24,13 @@ export default class Cute extends LnSprite{
 
     ]
 
-    super(game, 'enemy', 32, 32, configs)
-
-
-    this.type = 'enemy'
-
-    this.x = 0
-    this.y = 0
+    super(game, 32, 32, configs)
 
     this.hp = 80
 
-    this.collide = false // 体术
     this.pointRadius = 2 // 体术碰撞半径
 
     this.side = 16
-
-    this.t = 0
-
-    this.destroy = false
-
 
     this.anime = new EnemyAnime(
     	this,
@@ -53,65 +40,9 @@ export default class Cute extends LnSprite{
     )
   }
 
-  toRight() {
-  	this.isReverse = false;
-  }
-  toLeft() {
-  	this.isReverse = true;
-  }
-
-  update(game){
-    this.move(game.scene.player)
-    if (this.t > this.startComputerLeave) this.computeLeave()
-    this.computeCollide(game.scene.player)
-  }
-
-  move(player){
-    this.t++
-    let o = this.path.call(this,this.t)
-
-    if (o.x) this.x = o.x;
-    if (o.y) this.y = o.y;
-
-    // this.shot(player)
-  }
-  path(t) {
-
-  }
   shot() {  
     let player = this.game.scene.player
     let bp = new PlayerLinearBP(this.x, this.y+16,player.x,player.y,6,2.5)
     this.game.scene.addEle(bp)
-  }
-
-
-  computeLeave(){
-    if (
-    this.y < - this.side || 
-    this.x < - this.side ||
-    this.y > CONFIG.height + this.side ||
-    this.x > CONFIG.width + this.side 
-    ) {
-      this.destroy = true
-      console.log('destroy')
-    }
-  }
-
-  computeCollide(player){
-    let dx = player.x - this.x
-    let dy = player.y - this.y
-
-    let dr = Math.sqrt(dx*dx + dy*dy)
-
-    let r = player.pointRadius + this.pointRadius
-
-    this.collide = dr < r
-  }
-
-  beShot(val) {
-    this.hp -= val
-    if (this.hp <= 0) {
-      this.destroy = true
-    }
   }
 }

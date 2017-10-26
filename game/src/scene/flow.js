@@ -1,4 +1,5 @@
 import Cute from '../enemy/Cute'
+import Brave from '../enemy/Brave'
 
 
 let {sin,PI,cos,tan} = Math
@@ -12,17 +13,15 @@ function cuteLtoR(game,dx=0,type=0) {
   cute.path = t => {
 
     let at = 120
+    if (t%20==0 && t>0 && t < 150 && dx==30) cute.shot()
 
-
-      if (t%20==0 && t>0 && dx==30) cute.shot()
     if (t<at) {
-
-
       return {
         x: sin((t/2-90) * deg) * 300 + 300 + dx,
         y: cos((t/2-90) * deg) * 300 - dx/2 ,
       }
     } else {
+      cute.anime.stay()
       return {
         x: sin((at/2-90) * deg) * 300 + 300 + dx + (t-at),
         y: cos((at/2-90) * deg) * 300 - dx/2+ (t-at)/3,
@@ -34,14 +33,11 @@ function cuteLtoR(game,dx=0,type=0) {
 }
 function cuteRtoL(game,dx=0,type=0) {
   let cute = new Cute(game,type)
+  cute.toLeft()
   cute.anime.move()
   cute.path = t => {
-
     let at = 120
-
-
-
-      if (t%20==0 && t>0 &&dx==30) cute.shot()
+    if (t%20==0 && t>0 && t < 150 &&dx==30) cute.shot()
 
     if (t<at) {
       return {
@@ -49,6 +45,7 @@ function cuteRtoL(game,dx=0,type=0) {
         y: cos((t/2-90) * deg) * 300 - dx/2 ,
       }
     } else {
+      cute.anime.stay()
       return {
         x: 400-(sin((at/2-90) * deg) * 300 + 300 + dx + (t-at)),
         y: cos((at/2-90) * deg) * 300 - dx/2+ (t-at)/3,
@@ -60,53 +57,57 @@ function cuteRtoL(game,dx=0,type=0) {
 }
 
 function test(game) {
-  let cute = new Cute(game,1)
-  cute.toLeft()
-  cute.anime.move()
-  cute.path = t => {    
-    return {
-      x:150,y:100,
+  let brave = new Brave(game)
+  brave.path = t => { 
+
+    if (t >=60 & brave.stage == 1) {
+      brave.shot_round((t-60)*9)
+    }
+
+    if (brave.stage==2 && t%6==0) {
+      brave.shot_round2((t-500))
+    }
+    if (brave.stage==3 && t%2==0) {
+      brave.shot_round3(t)
+    }
+    
+
+    if (t%120==0 && t>60) {
+      brave.shot_pbp()
+    }
+
+
+    if (t < 30) {
+      return {
+        x:200,y:200/30*t
+      }
+    } else {
+      return {
+        x:200,y:200,
+      }
     }
   }
-  game.scene.addEle(cute)
+  game.scene.addEle(brave)
 }
 
 export default {
-	20(game) {cuteLtoR(game);cuteLtoR(game,30,1);cuteLtoR(game,60);},
-  80(game) {cuteLtoR(game);cuteLtoR(game,30,1);cuteLtoR(game,60);},
-  140(game) {cuteLtoR(game);cuteLtoR(game,30,1);cuteLtoR(game,60);},
-  200(game) {cuteLtoR(game);cuteLtoR(game,30,1);cuteLtoR(game,60);},
-  260(game) {cuteLtoR(game);cuteLtoR(game,30,1);cuteLtoR(game,60);},
-  320(game) {cuteLtoR(game);cuteLtoR(game,30,1);cuteLtoR(game,60);},
-  380(game) {cuteLtoR(game);cuteLtoR(game,30,1);cuteLtoR(game,60);},
-  440(game) {cuteLtoR(game);cuteLtoR(game,30,1);cuteLtoR(game,60);},
+  20(g) {cuteLtoR(g);cuteLtoR(g,30,1);cuteLtoR(g,60);},
+  80(g) {cuteLtoR(g);cuteLtoR(g,30,1);cuteLtoR(g,60);},
+  140(g) {cuteLtoR(g);cuteLtoR(g,30,1);cuteLtoR(g,60);},
+  200(g) {cuteLtoR(g);cuteLtoR(g,30,1);cuteLtoR(g,60);},
+  260(g) {cuteLtoR(g);cuteLtoR(g,30,1);cuteLtoR(g,60);},
+  320(g) {cuteLtoR(g);cuteLtoR(g,30,1);cuteLtoR(g,60);},
+  380(g) {cuteLtoR(g);cuteLtoR(g,30,1);cuteLtoR(g,60);},
+  440(g) {cuteLtoR(g);cuteLtoR(g,30,1);cuteLtoR(g,60);},
 
-  540(game) {cuteRtoL(game);cuteRtoL(game,30,1);cuteRtoL(game,60);},
-  600(game) {cuteRtoL(game);cuteRtoL(game,30,1);cuteRtoL(game,60);},
-  660(game) {cuteRtoL(game);cuteRtoL(game,30,1);cuteRtoL(game,60);},
-  720(game) {cuteRtoL(game);cuteRtoL(game,30,1);cuteRtoL(game,60);},
-  780(game) {cuteRtoL(game);cuteRtoL(game,30,1);cuteRtoL(game,60);},
-  840(game) {cuteRtoL(game);cuteRtoL(game,30,1);cuteRtoL(game,60);},
-  900(game) {cuteRtoL(game);cuteRtoL(game,30,1);cuteRtoL(game,60);},
-  960(game) {cuteRtoL(game);cuteRtoL(game,30,1);cuteRtoL(game,60);}
+  540(g) {cuteRtoL(g);cuteRtoL(g,30,1);cuteRtoL(g,60);},
+  600(g) {cuteRtoL(g);cuteRtoL(g,30,1);cuteRtoL(g,60);},
+  660(g) {cuteRtoL(g);cuteRtoL(g,30,1);cuteRtoL(g,60);},
+  720(g) {cuteRtoL(g);cuteRtoL(g,30,1);cuteRtoL(g,60);},
+  780(g) {cuteRtoL(g);cuteRtoL(g,30,1);cuteRtoL(g,60);},
+  840(g) {cuteRtoL(g);cuteRtoL(g,30,1);cuteRtoL(g,60);},
+  900(g) {cuteRtoL(g);cuteRtoL(g,30,1);cuteRtoL(g,60);},
+  960(g) {cuteRtoL(g);cuteRtoL(g,30,1);cuteRtoL(g,60);},
 
-
-
-	// 40(game) {cuteRtoL(game)},
-	// 60(game) {cuteLtoR(game)},
-	// 80(game) {cuteRtoL(game)},
-	// 100(game) {cuteLtoR(game)},
-	// 120(game) {cuteRtoL(game)},
-	// 140(game) {cuteLtoR(game)},
-	// 160(game) {cuteRtoL(game)},
-	// 180(game) {cuteLtoR(game)},
-	// 200(game) {cuteRtoL(game)},
-	// 220(game) {cuteLtoR(game)},
-	// 240(game) {cuteRtoL(game)},
-	// 260(game) {cuteLtoR(game)},
-	// 280(game) {cuteRtoL(game)},
-	// 300(game) {cuteLtoR(game)},
-  // 10(game) {
-  //   test(game)
-  // } 
+  1200(g) {test(g)},
 }

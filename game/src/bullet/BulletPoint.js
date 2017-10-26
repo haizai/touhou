@@ -7,11 +7,12 @@ export default class BulletPoint {
 		this.fillStyle = '#fff'
 		this.strokeStyle = 'red'
 
-		this.type = 'BulletPoint'
+		this.type = 'bullet'
 
 		this.destroy = false
 		this.collide = false
 
+		this.t = 0
 
 	}
 
@@ -31,6 +32,7 @@ export default class BulletPoint {
 	}
 
 	update(game){
+		this.t++
 		this.move()
 		this.computeLeave()
 		this.computeCollide(game.scene.player)
