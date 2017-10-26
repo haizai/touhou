@@ -6,7 +6,7 @@ export default class Pl00 extends Player {
 		super(game, 'pl00')
 
 
-		this.shotFrameCount = 16
+		this.shotFrameCount = 4
 
 		this.shotCount = 1
 	}

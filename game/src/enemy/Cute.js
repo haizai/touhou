@@ -5,7 +5,7 @@ import PlayerLinearBP from '../bullet/PlayerLinearBP'
 
 
 export default class Cute extends LnSprite{
-  constructor(game,type = 0) {
+  constructor(game,type = 0, startComputerLeave = 120) {
 
 
     var configs = [
@@ -33,7 +33,7 @@ export default class Cute extends LnSprite{
     this.x = 0
     this.y = 0
 
-    this.hp = 50
+    this.hp = 80
 
     this.collide = false // 体术
     this.pointRadius = 2 // 体术碰撞半径
@@ -43,6 +43,7 @@ export default class Cute extends LnSprite{
     this.t = 0
 
     this.destroy = false
+
 
     this.anime = new EnemyAnime(
     	this,
@@ -61,7 +62,7 @@ export default class Cute extends LnSprite{
 
   update(game){
     this.move(game.scene.player)
-    this.computeLeave()
+    if (this.t > this.startComputerLeave) this.computeLeave()
     this.computeCollide(game.scene.player)
   }
 
@@ -72,16 +73,15 @@ export default class Cute extends LnSprite{
     if (o.x) this.x = o.x;
     if (o.y) this.y = o.y;
 
-    this.shot(player)
+    // this.shot(player)
   }
   path(t) {
 
   }
-  shot(player) {
-    if (Utils.probability(0.02)) {
-      let bp = new PlayerLinearBP(this.x, this.y+16,player.x,player.y)
-      this.game.scene.addEle(bp)
-    }
+  shot() {  
+    let player = this.game.scene.player
+    let bp = new PlayerLinearBP(this.x, this.y+16,player.x,player.y,6,2.5)
+    this.game.scene.addEle(bp)
   }
 
 
@@ -93,7 +93,7 @@ export default class Cute extends LnSprite{
     this.x > CONFIG.width + this.side 
     ) {
       this.destroy = true
-    console.log('destroy')
+      console.log('destroy')
     }
   }
 

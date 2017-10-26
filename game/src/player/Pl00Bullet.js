@@ -10,7 +10,7 @@ export default class Pl00Bullet extends LnImage{
 
 	}
 	update(game){
-		this.y-=8
+		this.y-=16
 		this.computeLeave()
 		this.computeCollide(game.scene.eles)
 	}
