@@ -45,7 +45,7 @@ export default class Enemy extends LnSprite{
   }
 
   update(game){
-    if (this.changeStage) this.changeStage()
+    if (this.updateBoss) this.updateBoss()
     this.move(game.scene.player)
     if (this.t > this.startComputerLeave) this.computeLeave()
     this.computeCollide(game.scene.player)

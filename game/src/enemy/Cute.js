@@ -42,7 +42,7 @@ export default class Cute extends Enemy{
 
   shot() {  
     let player = this.game.scene.player
-    let bp = new PlayerLinearBP(this.x, this.y+16,player.x,player.y,6,2.5)
+    let bp = new PlayerLinearBP(this.x, this.y+16,player.x,player.y,6,1.5)
     this.game.scene.addEle(bp)
   }
 }

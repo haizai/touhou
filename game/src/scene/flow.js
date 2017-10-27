@@ -64,10 +64,10 @@ function test(game) {
       brave.shot_round((t-60)*9)
     }
 
-    if (brave.stage==2 && t%6==0) {
+    if (brave.stage==3 && t%6==0) {
       brave.shot_round2((t-500))
     }
-    if (brave.stage==3 && t%2==0) {
+    if (brave.stage==5 && t%2==0) {
       brave.shot_round3(t)
     }
     
@@ -81,12 +81,26 @@ function test(game) {
       return {
         x:200,y:200/30*t
       }
-    } else {
+    } else if (brave.stage == 2) {
+      return {
+        x:200+60-brave.stageTime,y:200
+      }
+    } else if (brave.stage == 3) {
+      return {
+        x:260,y:200
+      }
+    }else if (brave.stage == 4) {
+      return {
+        x:200+brave.stageTime,y:200
+      }
+    }
+    else {
       return {
         x:200,y:200,
       }
     }
   }
+  log(brave)
   game.scene.addEle(brave)
 }
 
@@ -109,5 +123,5 @@ export default {
   900(g) {cuteRtoL(g);cuteRtoL(g,30,1);cuteRtoL(g,60);},
   960(g) {cuteRtoL(g);cuteRtoL(g,30,1);cuteRtoL(g,60);},
 
-  1200(g) {test(g)},
+  1300(g) {test(g)},
 }

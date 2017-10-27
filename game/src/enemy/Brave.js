@@ -35,6 +35,8 @@ export default class Brave extends Enemy{
     this.side = 32
 
     this.stage = 1
+    this.stageTime = 0
+
 
     this.anime = new EnemyAnime(
     	this,
@@ -85,21 +87,41 @@ export default class Brave extends Enemy{
   }
   shot_pbp() {
     let player = this.game.scene.player
-    var bp = new PlayerLinearBP(this.x, this.y+16,player.x-10,player.y,6,2)
+    var bp = new PlayerLinearBP(this.x, this.y+16,player.x,player.y,6,2)
     this.game.scene.addEle(bp)
   }
-  changeStage() {
-    if (this.hp > 3333 && this.hp < 6666) {
-      if (this.stage == 1) {
-        this.stage = 2
-        this.game.scene.clear()
-      }
-    } else if (this.hp <= 3333) {
-      if (this.stage == 2) {
-        this.stage = 3
-        this.game.scene.clear()
-      }
+  updateBoss() {
+
+    switch (this.stage) {
+      case 0:
+        break;
+      case 1:
+        if (this.hp < 6666) {
+          this.stage = 2
+          this.stageTime = 60
+          this.game.scene.clear()
+        }
+        break;
+      case 2:
+        this.stageTime-- 
+        if (this.stageTime <= 0) this.stage = 3
+        break;
+      case 3:
+        if (this.hp < 3333) {
+          this.stage = 4
+          this.stageTime = 60
+          this.game.scene.clear()
+        }
+        break;
+      case 4:
+        this.stageTime-- 
+        if (this.stageTime <= 0) this.stage = 5
+        break;
+      default:
+        // statements_def
+        break;
     }
+
   }
   beShot(val) {
     this.hp -= val
