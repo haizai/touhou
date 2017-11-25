@@ -3,16 +3,51 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<canvas id="id-canvas" width="400" height="600"></canvas>
+
+	<h2 class="title">东方射爆alpha版0.1</h2>
+
+  <p class="info">
+    按z射击 &nbsp;&nbsp;&nbsp;&nbsp;
+    死亡次数： <span id="deadCount">0</span>
+  </p>
+
+
+<!-- 	<div id="popup">
+		<span id="popup-engtitle">Mission Incomplete</span>
+		<span id="popup-title">攻略失败</span>
+
+		<span id="popup-item1">刚刚就当无事发生</span>
+		<span id="popup-engitem1">Return to Game</span>
+
+		<span id="popup-item2">重头再来</span>
+		<span id="popup-engitem1">Once Again</span>
+
+	</div> -->
+	
+	<div class="outer-canvas">
+		<canvas id="id-canvas" width="400" height="600"></canvas>
+	</div>
+
+	
+
+  <p class="info">
+    <span class="btn" id="esc">暂停ESC</span>
+    <span class="btn" id="clear">清屏X</span>
+    <span class="btn" id="enter">继续Enter</span>&nbsp;&nbsp;&nbsp;&nbsp;
+    死后请点继续
+  </p>
+
 
 	<form>
-		死亡次数 <span id="deadCount">0</span>
+<!-- 		死亡次数 <span id="deadCount">0</span>
 		<button id="esc">暂停ESC</button>
 		<button id="enter">继续Enter</button>
 		<button id="clear">清屏X</button>
-		死后请点继续
+		死后请点继续<br>
+		按z射击 -->
 <!-- 		<br>
 		
 		弹幕出现频率<input id="appendRateRange" type="range" max="100" min="0" step="1" value="40"> 
@@ -37,6 +72,12 @@
 		<span id="quickFrameSpan">1</span>
 		<input id="quickFrameRange" type="range" max="10" min="1" step="1" value="1"> -->
 	</form>
+
+  <p class="tip">
+    2017 
+    <a href="https://github.com/haizai" target="_blank">haizai</a>
+    <a href="javascript:;" target="_blank">源码</a>
+  </p>
 
 
 	<script src="public/utils.js"></script>

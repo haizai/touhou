@@ -101,8 +101,6 @@ export default class Scene {
     this.game.context.fillStyle = "#554"
     this.game.context.fillRect(0, 0, CONFIG.width, CONFIG.height)
 
-
-
     // draw eles
     
     this.drawEles() 
@@ -132,9 +130,9 @@ export default class Scene {
   }
 
   update() {
-      if (MOD.paused) {
-        return
-      }
+      // if (MOD.paused) {
+      //   return
+      // }
 
       this.doFlow(flow,this.game.t)
 

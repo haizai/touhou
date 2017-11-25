@@ -1,0 +1,48 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: "Microsoft YaHei",Arial,Helvetica,sans-serif;
+}
+.title {
+  text-align: center;
+  background: #727f80;
+  color: #fff;
+  height: 100px;
+  line-height: 100px;
+}
+
+.info {
+  text-align: center;
+  font-size: 16px;
+  height: 70px;
+  line-height: 70px;
+  background: #f6f6f6;
+}
+
+.btn {
+  padding: 5px 30px;
+  border: 1px solid #888;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-left: 20px;
+}
+.btn:hover {
+  color: #f6f6f6;
+  background: #727f80;
+}
+.outer-canvas {
+	height: 600px;
+	position: relative;
+}
+#id-canvas {
+  position  : absolute;
+  left      : 50%;
+  transform : translate(-50%,0);
+}
+.tip {
+  text-align: center;
+  margin: 20px;
+}

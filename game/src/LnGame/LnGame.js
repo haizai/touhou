@@ -1,3 +1,6 @@
+
+import DeadPop from '../pop/DeadPop'
+
 export default class LnGame {
 	constructor(fps,images, runCallback){
     window.fps = fps
@@ -17,6 +20,8 @@ export default class LnGame {
     this.keydowns = {}
     this.canvas = document.querySelector('#id-canvas')
     this.context = this.canvas.getContext('2d')
+    this.pop = null
+
 
     window.addEventListener('keydown', event => {
       this.keydowns[event.keyCode] = true
@@ -77,12 +82,21 @@ export default class LnGame {
             this.actions[keyCode]()
         }
     }
-    // update
-    this.update()
-    // clear
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.heithisht)
-    // draw
-    this.draw()
+
+    if (!MOD.paused) {
+      // update
+      this.update()
+      // clear
+      this.context.clearRect(0, 0, this.canvas.width, this.canvas.heithisht)
+      // draw
+      this.draw()
+
+      if (MOD.paused) {
+        this.fill()
+      }
+
+    }
+
     // next run loop
     setTimeout(()=>{
       this.runloop()
@@ -100,6 +114,15 @@ export default class LnGame {
     this.deadCount++
     $('deadCount').innerHTML = this.deadCount
     MOD.paused = true
+
+  }
+
+  fill(){
+
+    // this.pop = new DeadPop(this)
+
+    // this.pop.show()
+
   }
 
 
